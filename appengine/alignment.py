@@ -5,31 +5,31 @@ class Alignment:
 		self.type = 'global'
 
 	def traceback(self, grid, trace, seq1, seq2):
-	    opt_align = []
-	    align1 = ''
-	    align2 = ''
-	    i, j = np.unravel_index(grid.argmax(), grid.shape)
-	    
-	    while i > 0 and j > 0:
-	        next_step = str(trace[i][j])
-	        if 'up' in next_step:
-	            align1 = seq1[i-1] + align1
-	            align2 = '_' + align2
-	            i -= 1
-	        elif 'left' in next_step:
-	            align1 = '_' + align1
-	            align2 = seq2[j-1] + align2
-	            j -= 1
-	        elif 'diag' in next_step:
-	            align1 = seq1[i-1] + align1
-	            align2 = seq2[j-1] + align2
-	            i -= 1
-	            j -= 1
-	    
-	    opt_align.append(align1)
-	    opt_align.append(align2)
-	    
-	    return opt_align
+		opt_align = []
+		align1 = ''
+		align2 = ''
+		i, j = np.unravel_index(grid.argmax(), grid.shape)
+		
+		while i > 0 and j > 0:
+			next_step = str(trace[i][j])
+			if 'up' in next_step:
+				align1 = seq1[i-1] + align1
+				align2 = '_' + align2
+				i -= 1
+			elif 'left' in next_step:
+				align1 = '_' + align1
+				align2 = seq2[j-1] + align2
+				j -= 1
+			elif 'diag' in next_step:
+				align1 = seq1[i-1] + align1
+				align2 = seq2[j-1] + align2
+				i -= 1
+				j -= 1
+		
+		opt_align.append(align1)
+		opt_align.append(align2)
+		
+		return opt_align
 	def alignment(self, sequence_1, sequence_2, alignment_type='global', match_score=1, mismatch_score=-1, linear_gap=-3):
 		if alignment_type not in ('global', 'local'):
 			return False
