@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    <!-- [START css] -->
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+    <!-- [END css] -->
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      blockquote {
+        margin-bottom: 10px;
+        border-left-color: #bbb;
+      }
+      form {
+        margin-top: 10px;
+      }
+      .form-signin input[type="text"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      .row {
+        margin-left: 0px;
+        margin-top: 10px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Sequence Alignment</a>
+         </div>
+      </div>
+    </div>
+    <div class="container">
+      
+      {{ error }}
+      
+      <form>
+        <input value="{{ sequence_1 }}" placeholder="Sequence 1" name="sequence_1"><br />
+        <input value="{{ sequence_2 }}" placeholder="Sequence 2" name="sequence_2"><br />
+        <input value="{{ match }}" placeholder="Match Score" name="match"><br />
+        <input value="{{ mismatch }}" placeholder="Mismatch Score" name="mismatch"><br />
+        <input value="{{ gap }}" placeholder="Gap Score" name="gap"><br />
+        <select name="alignment"><option>Global Alignment</option><option>Local Alignment</option></select><br />
+        <input type="submit" value="ALIGN!">
+      </form>
+
+      <a href="{{ url|safe }}">{{ url_linktext }}</a>
+    </div>
+  </body>
+  <br />Sequence 1: {{ sequence_1 }}
+  <br />Sequence 2: {{ sequence_2 }}
+  <br />Match: {{ match }}
+  <br />Mismatch: {{ mismatch }}
+  <br />Gap: {{ gap }}
+  <br />Alignment: {{ alignment }}
+  <br />Score: {{ score }}
+ <pre>{{ grid }}</pre>
+ <pre>{{ trace }}</pre>
+ <pre>{{ alignment }}</pre>
+</html>
+{% endautoescape %}
